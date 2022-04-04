@@ -1,9 +1,34 @@
-<hr>
-<h2># C - Static libraries</h2>
-
-| Filename | Description |
-| -------- | ----------- |
-| `libholberton.a, holberton.h` | Create the static library libholberton.a containing all the functions listed below: <br> `codes! codes!! codes!!!` |
-| ` ` | If you haven’t coded all of the above functions create empty ones with the right prototype. <br>Don’t forget to push your holberton.h file to your repository. It should at least contain all the prototypes of the above functions. |
-| ` create_static_lib.sh` | Create a script called create_static_lib.sh that creates a static library called liball.a from all the .c files that are in the current directory. |
-<hr>
+0x09-static_libraries
+cp ../0x04-more_functions_nested_loops/0-isupper.c
+cp ../0x07-pointers_arrays_strings/0-memset.c
+cp ../0x06-pointers_arrays_strings/0-strcat.c
+ls
+cp ../0x04-more_functions_nested_loops/0-isupper.c 0-isupper.c
+cp ../0x07-pointers_arrays_strings/0-memset.c 0-memset.c
+cp ../0x06-pointers_arrays_strings/0-strcat.c 0-strcat.c
+cp ../0x04-more_functions_nested_loops/1-isdigit.c 1-isdigit.c
+cp ../0x07-pointers_arrays_strings/1-memcpy.c 1-memcpy.c
+cp ../0x06-pointers_arrays_strings/1-strncat.c 1-strncat.c
+cp ../0x05-pointers_arrays_strings/100-atoi.c 100-atoi.c
+cp ../0x07-pointers_arrays_strings/2-strchr.c 2-strchr.c
+cp ../0x05-pointers_arrays_strings/2-strlen.c 2-strlen.c
+/0x06-pointers_arrays_strings/2-strncpy.c 2-strncpy.c
+cp ../0x02-functions_nested_loops/3-islower.c 3-islower.c
+cp ../0x05-pointers_arrays_strings/3-puts.c 3-puts.c
+cp ../0x06-pointers_arrays_strings/3-strcmp.c 3-strcmp.c
+cp ../0x07-pointers_arrays_strings/3-strspn.c 3-strspn.c
+cp ../0x02-functions_nested_loops/4-isalpha.c 4-isalpha.c
+cp ../0x07-pointers_arrays_strings/4-strpbrk.c 4-strpbrk.c
+cp ../0x07-pointers_arrays_strings/5-strstr.c 5-strstr.c
+cp ../0x02-functions_nested_loops/6-abs.c 6-abs.c
+cp ../0x05-pointers_arrays_strings/9-strcpy.c 9-strcpy.c
+cp ../0x02-functions_nested_loops/_putchar.c _putchar.c
+cp ../0x06-pointers_arrays_strings/2-strncpy.c 2-strncpy.c
+gcc -c *.c
+ar -rc libmy.a *.o
+git add .
+git commit -m 'commit'
+git push
+ls
+ls
+ls
