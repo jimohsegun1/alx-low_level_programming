@@ -1,62 +1,49 @@
+#include <stdlib.h>
 #include "main.h"
-/**
- *_strlen - count arrray
- *@s: array of elements
- *Return: i
- */
-
-int _strlen(char *s)
-{
-unsigned int i;
-
-i = 0;
-while (s[i] != '\0') /*Count character of string*/
-{
-i++;
-}
-
-return (i);
-}
 
 /**
- *str_concat - back a pointer to array
- *@s1: Array one
- *@s2: Array two
- *Return: Always an array dinamic
+ * *str_concat - concatenates two strings
+ * @s1: string to concatenate
+ * @s2: other string to concatenate
+ *
+ * Return: pointer to the new string created (Success), or NULL (Error)
  */
-
 char *str_concat(char *s1, char *s2)
 {
-char *dst;
-unsigned int i, j, size;
+char *s3;
+unsigned int i = 0, j = 0, len1 = 0, len2 = 0;
 
-/*If the array is empty*/
-if (s1 == NULL)
-s1 = "";
+while (s1 && s1[len1])
+len1++;
+while (s2 && s2[len2])
+len2++;
 
-if (s2 == NULL)
-s2 = "";
-
-/*count size total*/
-size = (_strlen(s1) + _strlen(s2) + 1);
-
-/*malloc*/
-dst = (char *) malloc(size * sizeof(char));
-
-if (dst == 0)
-{
+s3 = malloc(sizeof(char) * (len1 + len2 + 1));
+if (s3 == NULL)
 return (NULL);
-}
 
-/*Concatenate arrays*/
-for (i = 0; *(s1 + i) != '\0'; i++)
-*(dst + i) = *(s1 + i);
+i = 0;
+j = 0;
 
-for (j = 0; *(s2 + j) != '\0'; j++)
+if (s1)
 {
-*(dst + i) = *(s2 + j);
+while (i < len1)
+{
+s3[i] = s1[i];
 i++;
 }
+}
 
-return (dst);
+if (s2)
+{
+while (i < (len1 + len2))
+{
+s3[i] = s2[j];
+i++;
+j++;
+}
+}
+s3[i] = '\0';
+
+return (s3);
 }
