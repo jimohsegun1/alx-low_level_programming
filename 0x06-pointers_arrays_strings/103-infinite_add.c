@@ -1,56 +1,52 @@
+#include "main.h"
+#include <stdio.h>
+
 /**
- * infinite_add - Adds two numbers
- * @n1: First number as a string
- * @n2: Second number as a string
- * @r: Buffer to store the result
- * @size_r: Size of the buffer
- *
- * Return: Pointer to the result, or 0 if the result cannot be stored in r
+ * print_buffer - Prints a buffer 10 bytes at a time, starting with
+ *                the byte position, then showing the hex content,
+ *                then displaying printable charcaters.
+ * @b: The buffer to be printed.
+ * @size: The number of bytes to be printed from the buffer.
  */
-char *infinite_add(char *n1, char *n2, char *r, int size_r)
+void print_buffer(char *b, int size)
 {
-  int len1 = 0, len2 = 0, carry = 0, sum = 0;
-  int i, j;
+  int byte, index;
 
-  /* Calculate the lengths of n1 and n2 */
-  while (n1[len1] != '\0')
-    len1++;
-  while (n2[len2] != '\0')
-    len2++;
-
-  /* Check if the result can be stored in r */
-  if (len1 >= size_r || len2 >= size_r)
-    return 0;
-
-  /* Add the digits from right to left, and store the result in r */
-  for (i = len1 - 1, j = len2 - 1; i >= 0 || j >= 0 || carry; i--, j--)
+  for (byte = 0; byte < size; byte += 10)
     {
-      sum = carry;
-      if (i >= 0)
-	sum += n1[i] - '0';
-      if (j >= 0)
-	sum += n2[j] - '0';
+      printf("%08x: ", byte);
 
-      if (sum >= 10)
+      for (index = 0; index < 10; index++)
 	{
-	  carry = 1;
-	  sum -= 10;
+	  if ((index + byte) >= size)
+	    printf("  ");
+
+	  else
+	    printf("%02x", *(b + index + byte));
+
+	  if ((index % 2) != 0 && index != 0)
+	    printf(" ");
 	}
-      else
-	carry = 0;
 
-      r[size_r - 1] = sum + '0';
-      size_r--;
+      for (index = 0; index < 10; index++)
+	{
+	  if ((index + byte) >= size)
+	    break;
+
+	  else if (*(b + index + byte) >= 31 &&
+		   *(b + index + byte) <= 126)
+	    printf("%c", *(b + index + byte));
+
+	  else
+	    printf(".");
+	}
+
+      if (byte >= size)
+	continue;
+
+      printf("\n");
     }
 
-  /* If the result is shorter than r, move the digits to the left */
-  if (size_r > 0 && r[size_r - 1] != '\0')
-    {
-      for (i = 0; i < size_r; i++)
-	r[i] = r[i + 1];
-      r[i] = '\0';
-    }
-
-  /* Return a pointer to the result */
-  return r;
+  if (size <= 0)
+    printf("\n");
 }
